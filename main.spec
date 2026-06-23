@@ -20,7 +20,7 @@ exe = EXE(
     a.binaries,
     a.zipfiles,
     a.datas,
-    name='main',
+    name='compactararquivos',
     debug=False,
     strip=False,
     upx=True,
