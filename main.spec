@@ -1,13 +1,13 @@
-# compactararquivos.spec
+# main.spec
 block_cipher = None
 
 a = Analysis(
-    ['compactararquivos.py'],   # arquivo principal
+    ['main.py'],   # arquivo principal
     pathex=[],
     binaries=[],
     datas=[
     ],
-    hiddenimports=['metodos', 'verificarversao', 'janela', 'requests', 'urllib3', 'chardet', 'idna', 'certifi'], # módulos auxiliares
+    hiddenimports=['funcoes', 'verificarversao', 'janela_compactador', 'requests', 'urllib3', 'chardet', 'idna', 'certifi'], # módulos auxiliares
     hookspath=[],
     runtime_hooks=[],
     excludes=[],
@@ -20,7 +20,7 @@ exe = EXE(
     a.binaries,
     a.zipfiles,
     a.datas,
-    name='compactararquivos',
+    name='main',
     debug=False,
     strip=False,
     upx=True,
