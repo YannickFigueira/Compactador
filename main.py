@@ -1,16 +1,14 @@
 import argparse
 import tkinter as tk
 
+import estilo
 # Importa a lógica e o layout dos outros módulos
 from funcoes import Controles
 from janela_compactador import Compactador
 
-VERSION = "2.1.0"
-REPO = "Compactador"
-
 # --- Configuração do CLI (Argparse) ---
 parser = argparse.ArgumentParser(prog="compactararquivos")
-parser.add_argument("-v", "--version", action="version", version=f"%(prog)s {VERSION}")
+parser.add_argument("-v", "--version", action="version", version=f"%(prog)s {estilo.VERSION}")
 args = parser.parse_args()
 
 # --- Inicialização da Interface ---
@@ -19,7 +17,7 @@ if __name__ == "__main__":
     root = tk.Tk()
 
     # 2. Cria a parte visual (passando o root e a versão)
-    visual = Compactador(root, REPO, VERSION)
+    visual = Compactador(root)
 
     # 3. Passa a visão para a sua classe de Lógica controlar
     logica = Controles(visual)

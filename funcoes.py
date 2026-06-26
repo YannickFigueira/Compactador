@@ -7,6 +7,7 @@ from platform import system
 from tkinter import messagebox, filedialog
 import logging
 
+import estilo
 import verificarversao
 
 home_dir = os.path.expanduser('~')
@@ -16,7 +17,7 @@ if system == 'Linux':
         os.mkdir(f"{home_dir}/log")
 
     logging.basicConfig(
-        filename=f"{home_dir}/log/compactar.log",        # nome do arquivo
+        filename=f"{home_dir}/log/{estilo.ARQUIVO_ERRO}",        # nome do arquivo
         level=logging.ERROR,         # nível de log
         format="%(asctime)s - %(levelname)s - %(message)s"
     )
@@ -26,7 +27,7 @@ elif system == 'Windows':
         os.mkdir(f"c:/temp")
 
     logging.basicConfig(
-        filename="c:/temp/compactar.log",  # nome do arquivo
+        filename=f"c:/temp/{estilo.ARQUIVO_ERRO}",  # nome do arquivo
         level=logging.ERROR,  # nível de log
         format="%(asctime)s - %(levelname)s - %(message)s"
     )
@@ -42,9 +43,6 @@ def selecionar_pasta():
 class Controles:
     def __init__(self, view):
         self.view = view
-        self.repo = self.view.controles['var_repo'].get()
-        self.version = self.view.controles['var_version'].get() # Exemplo de variáveis que você usa
-        self.programa_title = self.view.controles['var_title'].get()
 
         # O controlador se adapta automaticamente baseando-se em qual janela o chamou
         if hasattr(view, 'nome_janela'):
@@ -59,7 +57,7 @@ class Controles:
 
         # Vincula a ação ao menu "Sobre" que foi criado no layout
         self.view.controles['menu_ajuda'].add_command(label="Verificar atualização",
-                                                      command=lambda: verificarversao.consultar_lancamento(self.repo, self.version))
+                                                      command=lambda: verificarversao.consultar_lancamento(estilo.REPO, estilo.VERSION))
         self.view.controles['menu_ajuda'].add_command(label="Sobre", command=lambda: self.visitar_site())
 
     def selecionar_origem(self):
@@ -149,7 +147,7 @@ class Controles:
         pagina = "https://github.com/YannickFigueira"
         resposta = messagebox.askyesno(
             "Sobre",
-            f"{self.programa_title} v{self.version}\n"
+            f"{estilo.NOME_PROGRAMA} {estilo.VERSION}\n"
             f"Desenvolvedor YannickFigueira\n"
             f"chronostimeinchain@gmail.com\n\n"
             f"Deseja visitar a página?"
